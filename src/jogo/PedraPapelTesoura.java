@@ -10,70 +10,104 @@ public class PedraPapelTesoura
 	Scanner leitor = new Scanner (System.in);
 	Random sorteio = new Random();
 	
-	int valorSorteado = sorteio.nextInt(3) + 1;
-	int v1;
+	int valorUsuario, numpartidas;
+	int cont = 0;
+	int vitoriasusuario = 0;
+	int vitoriascomp = 0;
+	String jogarnovamente = "S";
 	
-	System.out.println("**************************");
-	System.out.println("Escolha uma opção: ");
-	System.out.println("**************************");
-	System.out.println("1-Pedra");
-	System.out.println("2-Papel");
-	System.out.println("3-Tesoura");
-	System.out.println("**************************");
+	System.out.println("----------------------------");
+	System.out.println("      J O K E N P O         ");
+	System.out.println("----------------------------");
 	
-	System.out.println("Qual a sua escolha? ");
-	 v1 = leitor.nextInt();
+	System.out.print("Quantas partidas: ");
 	
-	System.out.println(valorSorteado);
-	valorSorteado = sorteio.nextInt();
+	numpartidas = leitor.nextInt();
 	
-	leitor.close();
-	
-	if (valorSorteado == 1) {
-		if (v1 == 1) {
-			System.out.println("você escolheu pedra");
-			System.out.println("pc escolheu pedra");
-			System.out.println("EMPATE!!");
-		} else if (valorSorteado == 2) {
-			System.out.println("você escolheu pedra");
-			System.out.println("pc escolheu papel");
-			System.out.println("VOCÊ VENCEU!!");
-		} else {
-			System.out.println("você escolheu pedra");
-			System.out.println("pc escolheu tesoura");
-			System.out.println("PC VENCEU");
-		}
-	} else if (valorSorteado == 2) {
-		if (v1 == 2) {
-			System.out.println("você escolheu papel");
-			System.out.println("pc escolheu papel");
-			System.out.println("EMPATE!!");
-		}else if (valorSorteado == 1) {
-			System.out.println("você escolheu papel");
-			System.out.println("pc escolheu pedra");
-			System.out.println("VOCÊ VENCEU!!");
-		} else {
-			System.out.println("você escolheu papel");
-			System.out.println("pc escolheu tesoura");
-			System.out.println("PC VENCEU!!");
-		}
+	if (numpartidas % 2 == 0 || numpartidas < 3) {
+		System.out.println("Número de partidas inserido inválido");
 	} else {
-		if (v1 == 3) {
-			System.out.println("você escolheu tesoura");
-			System.out.println("pc escolheu tesoura");
-			System.out.println("EMPATE!!");
-		} else if (valorSorteado == 1) {
-			System.out.println("você escolheu tesoura");
-			System.out.println("pc escolheu pedra");
-			System.out.println("PC VENCEU!!");
-		} else {
-			System.out.println("você escolheu tesoura");
-			System.out.println("você escolheu pedra");
-			System.out.println("VOCÊ VENCEU!!");
-		}
-	}
+		while (cont < numpartidas && jogarnovamente.equals("S")) {
+			cont = cont + 1;
+			System.out.println();
+			System.out.println("Partida " + cont);
+			
+			System.out.println();
+			System.out.println("Escolha uma opção: ");
+			System.out.println();
+			System.out.println("1 - Pedra");
+			System.out.println("2 - Papel");
+			System.out.println("3 - Tesoura");
+			
+			System.out.print("Digite sua escolha(use apenas os algorismos 1, 2 ou 3: ");
+			valorUsuario = leitor.nextInt();
+			
+			System.out.println();
+			
+			
+			
+			int valorsorteio = sorteio.nextInt(numpartidas) + 1;
+			
+			if (valorUsuario == 1 && valorsorteio == 2) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(pedra)"); 
+				System.out.println("O computador selecionou: " + valorsorteio + "(papel)"); 
+				System.out.println();
+				System.out.println("O COMPUTADOR GANHOU!!!");
+				vitoriascomp = vitoriascomp + 1;
+			} else if (valorUsuario == 1 && valorsorteio == 3) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(pedra)");
+				System.out.println("O computador selecionou: " + valorsorteio + "(tesoura)");  
+				System.out.println();
+				System.out.println("O usuário ganhou!!!");
+				vitoriasusuario = vitoriasusuario + 1;
+				if (numpartidas / 2 < vitoriasusuario ) {
+					System.out.println("O usuario venceu a melhor de " + numpartidas);
+				} else if (numpartidas / 2 < vitoriascomp) {
+					System.out.println("O computador venceu a melhor de " + numpartidas);
+				}
+			} else if (valorUsuario == 2 && valorsorteio == 3) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(papel)"); 
+				System.out.println("O computador selecionou: " + valorsorteio + "(tesoura)");
+				System.out.println();
+				System.out.println("O COMPUTADOR GANHOU!!!");
+			} else if (valorUsuario == 2 && valorsorteio == 1) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(papel)"); 
+				System.out.println("O computador selecionou: " + valorsorteio + "(pedra)");
+				System.out.println();
+				System.out.println("O usuário ganhou!!!");
+			} else if (valorUsuario == 3 && valorsorteio == 1) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(tesoura)"); 
+				System.out.println("O computador selecionou: " + valorsorteio + "(pedra)");
+				System.out.println();
+				System.out.println("O COMPUTADOR GANHOU!!!!");
+			} else if (valorUsuario == 3 && valorsorteio == 2) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(tesoura)"); 
+				System.out.println("O computador selecionou: " + valorsorteio + "(papel)");
+				System.out.println();
+				System.out.println("O usuário ganhou!!!");	
+			} else if (valorUsuario == 1 && valorsorteio == 1) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(pedra)"); 
+			    System.out.println("O computador selecionou: " + valorsorteio + "(pedra)");
+			    System.out.println();
+			    while (valorUsuario == valorsorteio);
+				System.out.println("EMPATE!!!");
+			} else if (valorUsuario == 2 && valorsorteio == 2) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(pedra)"); 
+				System.out.println("O computador selecionou: " + valorsorteio + "(pedra)");
+				System.out.println();
+				System.out.println("EMPATE!!!");
+			
+			} else if (valorUsuario == 3 && valorsorteio == 3) {
+				System.out.println("O usuário selecionou: " + valorUsuario + "(tesoura)"); 
+				System.out.println("O computador selecionou: " + valorsorteio + "(tesoura)");
+				System.out.println();
+				System.out.println("EMPATE!!!");
+			}
+		
 	
 	
 }
 
+	}
+}
 }
